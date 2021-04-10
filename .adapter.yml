@@ -1,0 +1,13 @@
+name: DiaboloTradeBalanceChecker
+description: Adapter to fetch balances of trade accounts (Binance, FTX, Kraken) of Diabolo
+
+node_identifier: DTBC
+
+platforms:
+  - Docker
+
+data_sources:
+  - name: Binance
+    url: https://www.kraken.com/help/api
+
+parameters:
