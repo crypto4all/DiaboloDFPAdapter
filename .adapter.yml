@@ -1,5 +1,5 @@
 name: DiaboloTradeBalanceChecker
-description: Adapter to fetch balances of trade accounts (Binance, FTX, Kraken) of Diabolo
+description: Adapter to fetch balances of trade accounts of Diabolo
 
 node_identifier: DTBC
 
