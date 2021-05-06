@@ -1,7 +1,10 @@
 const { Requester, Validator } = require('@chainlink/external-adapter')
 const Binance = require('node-binance-api')
-const KrakenClient = require('kraken-api')
+const KrakenClient = require('./kraken')
 const { RestClient } = require('ftx-api')
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 const binance = new Binance().options({
   APIKEY: process.env.BINANCE_API_KEY,
@@ -63,7 +66,7 @@ const createRequest2 = async (input, callback) => {
     }
 
     // fetch Kraken account balance
-    // const krakenBalanceData = await krakenApi.api('Balance')
+    // const krakenBalanceData = await krakenApi.api('Ticker', { pair: 'XXBTZUSD' })
     // console.log(krakenBalanceData)
 
     callback(200, Requester.success(jobRunID, {
