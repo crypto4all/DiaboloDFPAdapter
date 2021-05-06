@@ -4,3 +4,4 @@ package-lock.json
 
 .envrc.example
 .idea/
+.env
