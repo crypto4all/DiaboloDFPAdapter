@@ -7,13 +7,13 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const binance = new Binance().options({
-  APIKEY: process.env.BINANCE_API_KEY,
-  APISECRET: process.env.BINANCE_API_SECRET
+  APIKEY: 'brEvq6kgFfSSP0WHJDZnsGACsQ716adCiDBblSiykE4jPmds2fDLUYlsVgDjEExk',
+  APISECRET: '0tZGD3KZ1Duwzc6GwXwewxTn9q0TQjzP4FYRhMj0RGc14zTQ6CMoHpQKVYyy36mK'
 })
 
 const ftxClient = new RestClient(
-  process.env.FTX_API_KEY,
-  process.env.FTX_API_SECRET
+  '1lzSapilHUmv7SWBG3P_dTpHBzmWLgF1DuxyFgM-',
+  'wlLVrXENVlyqzCB2QEi7qqsijrX8veRu_xYeAkkp'
 )
 
 const krakenApi = new KrakenClient(
