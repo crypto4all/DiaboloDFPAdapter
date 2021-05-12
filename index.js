@@ -7,8 +7,8 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const binance = new Binance().options({
-  APIKEY: 'brEvq6kgFfSSP0WHJDZnsGACsQ716adCiDBblSiykE4jPmds2fDLUYlsVgDjEExk',
-  APISECRET: '0tZGD3KZ1Duwzc6GwXwewxTn9q0TQjzP4FYRhMj0RGc14zTQ6CMoHpQKVYyy36mK'
+  APIKEY: 'Am9MbAEFoFq00JaAI1UNb7NRfPieWU60Q7EE96WykIHXoxBLyHDBFeHMtL4Xb6B0',
+  APISECRET: 'cMRCqfxbxehmXFW5Av1wsD5d43rSYvqmSZTfCbFrylbreqdcJQTbEU9FxzYKVl2q'
 })
 
 const ftxClient = new RestClient(
