@@ -2,6 +2,7 @@ const { Requester, Validator } = require('@chainlink/external-adapter')
 const Binance = require('node-binance-api')
 const KrakenClient = require('./kraken')
 const { RestClient } = require('ftx-api')
+const FTXRest = require('ftx-api-rest');
 const dotenv = require('dotenv')
 
 dotenv.config()
@@ -15,6 +16,11 @@ const ftxClient = new RestClient(
   '1lzSapilHUmv7SWBG3P_dTpHBzmWLgF1DuxyFgM-',
   'wlLVrXENVlyqzCB2QEi7qqsijrX8veRu_xYeAkkp'
 )
+
+const ftxApi = new FTXRest({
+  key: '1lzSapilHUmv7SWBG3P_dTpHBzmWLgF1DuxyFgM-',
+  secret: 'wlLVrXENVlyqzCB2QEi7qqsijrX8veRu_xYeAkkp'
+})
 
 const krakenApi = new KrakenClient(
   process.env.KRAKEN_API_KEY,
@@ -57,9 +63,14 @@ const createRequest2 = async (input, callback) => {
     totalUsdBalance += binanceTotalUsdBalance
 
     // fetch FTX account balance
-    const ftxBalanceData = await ftxClient.getBalances()
+    const ftxBalanceData = await ftxApi.request({
+      method: 'GET',
+      path: '/wallet/all_balances'
+    })
+
+    console.log(ftxBalanceData);
     if (ftxBalanceData.success) {
-      const ftxUsdValue = ftxBalanceData.result.reduce((sum, item) => {
+      const ftxUsdValue = ftxBalanceData.result.main.reduce((sum, item) => {
         return sum + item.usdValue
       }, 0)
       totalUsdBalance += ftxUsdValue

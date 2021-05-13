@@ -11,7 +11,7 @@
   "dependencies": {
     "@chainlink/external-adapter": "^0.2.3",
     "dotenv": "^9.0.0",
-    "ftx-api": "^1.0.0",
+    "ftx-api": "^1.0.9",
     "ftx-api-rest": "0.0.7",
     "kraken-api": "^1.0.1",
     "node-binance-api": "^0.12.5"
