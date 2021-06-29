@@ -3,10 +3,13 @@ const createRequest2 = require('./index').createRequest
 
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const app = express()
 const port = process.env.EA_PORT || 8080
 
 app.use(bodyParser.json())
+
+app.use(cors())
 
 app.post('/', (req, res) => {
   console.log('POST Data: ', req.body)
