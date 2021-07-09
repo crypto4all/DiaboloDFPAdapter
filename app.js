@@ -11,8 +11,7 @@ app.use(bodyParser.json())
 
 app.use(cors())
 
-app.post('/', (req, res) => {
-  console.log('POST Data: ', req.body)
+app.get('/', (req, res) => {
   createRequest2(req.body, (status, result) => {
     console.log('Result: ', result)
     res.status(status).json(result)
