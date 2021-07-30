@@ -1,4 +1,3 @@
-const createRequest = require('./index_old').createRequest
 const createRequest2 = require('./index').createRequest
 
 const express = require('express')

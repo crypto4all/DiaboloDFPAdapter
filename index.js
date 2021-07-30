@@ -1,8 +1,7 @@
 const { Requester, Validator } = require('@chainlink/external-adapter')
 const Binance = require('node-binance-api')
-const KrakenClient = require('./kraken')
 const { RestClient } = require('ftx-api')
-const FTXRest = require('ftx-api-rest');
+const FTXRest = require('ftx-api-rest')
 const dotenv = require('dotenv')
 
 dotenv.config()
@@ -21,11 +20,6 @@ const ftxApi = new FTXRest({
   key: '1lzSapilHUmv7SWBG3P_dTpHBzmWLgF1DuxyFgM-',
   secret: 'wlLVrXENVlyqzCB2QEi7qqsijrX8veRu_xYeAkkp'
 })
-
-const krakenApi = new KrakenClient(
-  process.env.KRAKEN_API_KEY,
-  process.env.KRAKEN_API_SECRET
-)
 
 // Define custom parameters to be used by the adapter.
 const customParams = {
@@ -76,10 +70,6 @@ const createRequest2 = async (input, callback) => {
       totalUsdBalance += ftxUsdValue
     }
 
-    // fetch Kraken account balance
-    // const krakenBalanceData = await krakenApi.api('Ticker', { pair: 'XXBTZUSD' })
-    // console.log(krakenBalanceData)
-
     callback(200, Requester.success(jobRunID, {
       data: {
         result: totalUsdBalance
@@ -89,34 +79,6 @@ const createRequest2 = async (input, callback) => {
     console.log(error)
     callback(500, Requester.errored(jobRunID, error))
   }
-}
-
-// This is a wrapper to allow the function to work with
-// GCP Functions
-exports.gcpservice = (req, res) => {
-  createRequest(req.body, (statusCode, data) => {
-    res.status(statusCode).send(data)
-  })
-}
-
-// This is a wrapper to allow the function to work with
-// AWS Lambda
-exports.handler = (event, context, callback) => {
-  createRequest2(event, (statusCode, data) => {
-    callback(null, data)
-  })
-}
-
-// This is a wrapper to allow the function to work with
-// newer AWS Lambda implementations
-exports.handlerv2 = (event, context, callback) => {
-  createRequest2(JSON.parse(event.body), (statusCode, data) => {
-    callback(null, {
-      statusCode: statusCode,
-      body: JSON.stringify(data),
-      isBase64Encoded: false
-    })
-  })
 }
 
 // This allows the function to be exported for testing
