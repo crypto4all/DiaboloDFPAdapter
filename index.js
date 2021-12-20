@@ -57,18 +57,18 @@ const createRequest2 = async (input, callback) => {
     totalUsdBalance += binanceTotalUsdBalance
 
     // fetch FTX account balance
-    const ftxBalanceData = await ftxApi.request({
-      method: 'GET',
-      path: '/wallet/all_balances'
-    })
-
-    console.log(ftxBalanceData);
-    if (ftxBalanceData.success) {
-      const ftxUsdValue = ftxBalanceData.result.main.reduce((sum, item) => {
-        return sum + item.usdValue
-      }, 0)
-      totalUsdBalance += ftxUsdValue
-    }
+    // const ftxBalanceData = await ftxApi.request({
+    //   method: 'GET',
+    //   path: '/wallet/all_balances'
+    // })
+    //
+    // console.log(ftxBalanceData);
+    // if (ftxBalanceData.success) {
+    //   const ftxUsdValue = ftxBalanceData.result.main.reduce((sum, item) => {
+    //     return sum + item.usdValue
+    //   }, 0)
+    //   totalUsdBalance += ftxUsdValue
+    // }
 
     callback(200, Requester.success(jobRunID, {
       data: {
